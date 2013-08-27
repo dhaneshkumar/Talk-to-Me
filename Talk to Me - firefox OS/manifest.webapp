@@ -1,0 +1,13 @@
+{
+  "name": "Talk To Me",
+  "description": "Online Psychiatrist Bot",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Dhanesh-Abhilash",
+    "url": "http://www.cse.iitb.ac.in/~lell"
+  },
+  "default_locale": "en"
+}

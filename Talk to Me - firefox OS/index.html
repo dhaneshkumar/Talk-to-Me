@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset=”utf-8”>
+	<title>Talk to Me !!!</title>
+ 	<link href="dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="style.css" rel="stylesheet" type="text/css"> 
+    <style>
+	@media (max-width: 700px) and (max-height: 500px) {
+		
+  		.form-signin {
+        max-width: 300px;
+		}
+		#end { width: 300px; 
+		left-padding:0px;
+		}
+		#head {font-size: 30px;
+		margin-bottom: 5px;
+		}
+		#srt{margin-bottom: 8px;
+		}
+		#starter {font-size: 15px;
+		}
+		#end{margin-left: 0px;
+			margin-bottom: 0px;
+border: none;resize: none;margin-top: -5px;
+padding-left: 0px;background-color: #C4C4C4;
+font: 10px Tahoma, Arial, Sans-serif;
+		}
+		#last{
+			height:"5px"
+		}
+		#last1{
+			font: 16px Tahoma, Arial, Sans-serif;margin-right: 0px;
+		}
+		#crash{
+			
+			width: 249px;
+			padding-left: 0px; 
+			box-shadow: 0px 0px 0px 0px;
+			font: 16px Tahoma, Arial, Sans-serif;border-radius: 4px;box-shadow: 0px 1px 3px 0px;
+		}
+		#last2{
+			font: 16px Tahoma, Arial, Sans-serif;
+		}
+		#text1{COLS:"23"; ROWS:"7";
+		}
+		#crash1{
+			
+			width: 249px;
+			
+		}
+		#line{
+			display:none;
+		}
+		#new{
+			margin-left:-40px;
+			font-size: 21px;
+		}
+  }
+   </style> 
+    
+    
+    
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript" SRC="elizabot.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript" SRC="elizadata.js"></SCRIPT>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="dist/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="dist/js/bootstrap.min.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+
+var eliza = new ElizaBot();
+var elizaLines = new Array();
+
+var displayCols = 53;
+var displayRows = 11;
+
+function elizaReset() {
+	eliza.reset();
+	elizaLines.length = 0;
+	elizaStep();
+}
+
+
+function elizaStep() {
+	document.getElementById("starter").style.display = "none";
+	document.getElementById("end").style.display = "inline";
+	var f = document.forms.e_form;
+	var userinput = f.e_input.value;
+	
+	
+	if (eliza.quit) {
+		f.e_input.value = '';
+		if (confirm("This session is over.\nStart over?")) elizaReset();
+		f.e_input.focus();
+		return;
+	}
+	else if (userinput != '') {
+		var usr = "\n" + 'You:   ' + userinput;
+		var rpl ='Me: ' + eliza.transform(userinput);
+		elizaLines.push(usr);
+		elizaLines.push(rpl);
+		// display nicely
+		// (fit to textarea with last line free - reserved for extra line caused by word wrap)
+		var temp  = new Array();
+		var l = 0;
+		for (var i=elizaLines.length-1; i>=0; i--) {
+			l += 1 + Math.floor(elizaLines[i].length/displayCols);
+			if (l >= displayRows) break
+			else temp.push(elizaLines[i]);
+		}
+		elizaLines = temp.reverse();
+		f.e_display.value = elizaLines.join('\n');
+	}
+	else if (elizaLines.length == 0) {
+		document.getElementById("starter").style.display = "inline";
+		document.getElementById("end").style.display = "none";
+		// no input and no saved lines -> output initial
+		//var initial = 'Me: ' + eliza.getInitial();
+	//	elizaLines.push(initial);
+	//	f.e_display.value = initial + '\n';
+	}
+	f.e_input.value = '';
+	f.e_input.focus();
+}
+
+//-->
+</SCRIPT>
+    
+ <style>
+ body {
+        
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 508px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #C4C4C4;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 6px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+ 
+    
+    
+</head>
+
+
+<body >
+<div style="margin:0 auto">
+<FORM  class="form-signin" NAME="e_form" onSubmit="elizaStep();return false">
+<table align=center valign=top cellpadding=8 callspacing=0 border=0 width=90%>
+  <tr>
+    <td  class="form-signin-heading "><h1 id="head" align="center">Talk <span style="color: #4D3A1E;">To Me</span></h1><hr id="line" style=" border-color:#F00;margin-top: -15px;border-width: 2px;" /></td>
+  </tr>
+  </table>
+ 
+
+ 
+  
+  <table align=center valign=top cellpadding=8 callspacing=0 border=0 width=90%>
+  
+  <tr>
+  <tr id="srt" height="80%">
+ 
+  	<td id="starter" style="display: inline" align="center">
+  		<h1 id="new" class="form-signin-heading"  align="center"> Start Chat
+            </h1>
+        
+        </td>
+    
+    <TD id="end"  style="display:none;"COLSPAN="2">
+    <TEXTAREA id="text1" NAME="e_display" COLS="53" ROWS="15" readonly ="yes"></TEXTAREA>
+  	</td>
+  
+  </tr>
+    <td id = "crash"align="center" height="20px">
+    <INPUT id = "crash1" TYPE="text"   NAME="e_input" SIZE="50" >
+    </td>
+  </tr>
+  <tr >
+    <td id="last" height="20px" align="center" valign="middle" align="left" >
+    <INPUT id="last1"class="btn btn-large btn-primary"; TYPE="submit"  VALUE="&nbsp;Talk&nbsp;"> 
+    <INPUT id ="last2" TYPE="reset" class="btn btn-large btn-primary"; VALUE="Reset" onClick="window.setTimeout('elizaReset()',100)"></td>
+  </tr>
+  </FORM>
+</table>
+
+
+</div>
+</body>
+</html>
